@@ -3,7 +3,7 @@ from optparse import OptionParser
 parser = OptionParser()
 parser.add_option("-l", "--lists", action="append", type="string", help="Listas negadas en pass")
 parser.add_option("-w", "--whitelists", action="append", type="string", help="Listas pass")
-parser.add_option("-f", "--file", dest="filename", action="store", type="string"
+parser.add_option("-f", "--file", dest="filename", action="store", type="string",
                   help="Archivo de salida", metavar="FILE")
 
 (options, args) = parser.parse_args()
