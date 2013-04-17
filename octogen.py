@@ -15,8 +15,6 @@ whitelists = options.whitelists or []
 filename = options.filename or "squidGuard.conf"
 directory = options.directory or "/usr/local/squidGuard/db"
 
-subprocess.call(["mv /home/bufferadmin/blacklists", "-l"])
-
 with open(filename, 'w') as f:
 	f.write("dbhome "+directory)
 	f.write("logdir /usr/local/squidGuard/logs\n")
