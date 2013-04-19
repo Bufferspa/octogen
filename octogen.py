@@ -1,5 +1,5 @@
 from optparse import OptionParser
-
+import subprocess
 parser = OptionParser()
 parser.add_option("-l", "--lists", action="append", type="string", help="Listas negadas en pass")
 parser.add_option("-w", "--whitelists", action="append", type="string", help="Listas pass")
@@ -13,14 +13,14 @@ parser.add_option("-f", "--file", dest="filename", action="store", type="string"
 lists = options.lists or []
 whitelists = options.whitelists or []
 filename = options.filename or "squidGuard.conf"
-directory = options.directory or "/usr/local/squidGuard/db"
+directory = options.directory or "/usr/local/squidguard/db"
 
 with open(filename, 'w') as f:
 	f.write("dbhome "+directory)
 	f.write("logdir /usr/local/squidGuard/logs\n")
 	f.write("\n")
 	for lista in lists+whitelists:
-		subprocess.call(["cp", "/home/bufferadmin/blacklists/"+lista, directory])
+		subprocess.call(["cp","-r", "/home/bufferadmin/blacklists/"+lista, directory])
 		f.write("dest "+lista+" {\n")
 		f.write("  domainlist "+lista+"/domains\n")
 		f.write("  urllist "+lista+"/urls\n")
