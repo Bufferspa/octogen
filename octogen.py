@@ -16,7 +16,7 @@ filename = options.filename or "squidGuard.conf"
 lists = options.lists or []
 whitelists = options.whitelists or []
 
-available_lists = [db_name for db_name in os.listdir(directory) if "domains" in os.listdir("/".join([directory,db_name]))]
+available_lists = [db_name for db_name in os.listdir(directory) if ("domains" in os.listdir("/".join([directory,db_name])) or "urls" in os.listdir("/".join([directory,db_name])))]
 
 lists = [i for i in lists if i in available_lists] 
 whitelists = [i for i in whitelists if i in available_lists]
