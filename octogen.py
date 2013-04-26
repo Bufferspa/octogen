@@ -13,13 +13,14 @@ parser.add_option("-f", "--file", dest="filename", action="store", type="string"
 
 directory = options.directory or "/usr/local/squiGuard/db"
 filename = options.filename or "squidGuard.conf"
+lists = options.lists or []
+whitelists = options.whitelists or []
 
-available_lists = [db_name for db_name in os.listdir(directory) if "domains" in os.listdir(directory+"/"+db_name)]
+available_lists = [db_name for db_name in os.listdir(directory) if "domains" in os.listdir("/".join([directory,db_name]))]
 
-lists = [i for i in options.lists if i in available_lists] or []
-whitelists = [i for i in options.whitelists if i in available_lists] or []
-#lists = [i for i in lists if i in available_lists]
-#whitelists = [i for i in whitelists if i in available_lists]
+lists = [i for i in lists if i in available_lists] 
+whitelists = [i for i in whitelists if i in available_lists]
+
 with open(filename, 'w') as f:
 	f.write("dbhome "+directory+"\n")
 	f.write("logdir /usr/local/squidGuard/logs\n")
