@@ -21,8 +21,8 @@ activity = options.activity or "activity.log"
 
 available_lists = [db_name for db_name in os.listdir(directory) if ("domains" in os.listdir("/".join([directory,db_name])) or "urls" in os.listdir("/".join([directory,db_name])))]
 
-lists = [i for i in lists if i in available_lists] 
-whitelists = [i for i in whitelists if i in available_lists]
+lists = filter(lambda x: x in available_lists, lists)
+whitelists = filter(lambda x: x in available_lists, whitelists)
 
 with open(filename, 'w') as f:
 	f.write("dbhome "+directory+"\n")
