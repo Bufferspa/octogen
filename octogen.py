@@ -17,6 +17,7 @@ directory = options.directory or "/usr/local/squiGuard/db"
 filename = options.filename or "squidGuard.conf"
 lists = options.lists or []
 whitelists = options.whitelists or []
+activity = options.activity or "activity.log"
 
 available_lists = [db_name for db_name in os.listdir(directory) if ("domains" in os.listdir("/".join([directory,db_name])) or "urls" in os.listdir("/".join([directory,db_name])))]
 
