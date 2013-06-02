@@ -8,6 +8,8 @@ parser.add_option("-d", "--dir", dest="directory", action="store", type="string"
                   help="Directorio de blacklists")
 parser.add_option("-f", "--file", dest="filename", action="store", type="string",
                   help="Archivo de salida", metavar="FILE")
+parser.add_option("-a", "--activity", dest="activity", action="store", type="string",
+                  help="Log de actividad")
 
 (options, args) = parser.parse_args()
 
@@ -29,6 +31,7 @@ with open(filename, 'w') as f:
 		f.write("dest "+lista+" {\n")
 		f.write("  domainlist "+lista+"/domains\n")
 		f.write("  urllist "+lista+"/urls\n")
+		f.write("  log verbose "+activity+"\n")
 		f.write("}\n")
 		f.write("\n")
 	f.write("\n")
